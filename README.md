@@ -1,4 +1,4 @@
-# Company Policy Assistant
+#Grounded- An ML Chatbot
 
 A confidential-data chatbot that answers questions using your organization's documents, powered by 
 retrieval-augmented generation (RAG). Runs entirely locally — no document content is ever sent to an 
