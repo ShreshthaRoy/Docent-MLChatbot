@@ -1,0 +1,7 @@
+question,expected_source,expected_keyword
+How many vacation days do I get?,vacation_policy.txt,20
+vacation for me,vacation_policy.txt,vacation
+What's the policy on expenses over $50?,expense_policy.txt,receipt
+Can I work fully remote?,remote_work_policy.txt,VP
+What's the parental leave policy?,NONE,
+What's the capital of France?,NONE,

@@ -1,0 +1,23 @@
+# Virtual environment - never upload, it's huge and machine-specific
+agents_env/
+
+# Confidential/real data - never upload
+data/
+*.pdf
+*.docx
+confidential_docs/
+
+# API keys / secrets
+.env
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Mac system files
+.DS_Store
+
+chat_history/
+chat_log.csv
+feedback_log.csv
+uploaded_docs/
