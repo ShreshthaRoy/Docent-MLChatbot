@@ -21,3 +21,4 @@ chat_history/
 chat_log.csv
 feedback_log.csv
 uploaded_docs/
+chroma_db/
