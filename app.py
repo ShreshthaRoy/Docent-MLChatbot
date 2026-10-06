@@ -83,7 +83,7 @@ def add_manual_knowledge(text, submitted_by="unknown"):
     return chunk_id
 
 
-def retrieve_context(question, n_results=8, distance_threshold=1.5):
+def retrieve_context(question, n_results=4, distance_threshold=1.5):
     question_embedding = embedder.encode([question]).tolist()
     results = collection.query(query_embeddings=question_embedding, n_results=n_results)
 
@@ -155,7 +155,7 @@ Answer:"""
                 "stream": True,
                 "keep_alive": "30m",
                 "options": {
-                    "num_predict": 250
+                    "num_predict": 150
                 }
             },
             stream=True,
@@ -396,14 +396,19 @@ if user_input:
 
     with row_main:
         with st.chat_message("assistant", avatar="🤖"):
-            with st.spinner("Searching documents..."):
-                chunks, ids = retrieve_context_cached(user_input)
-
-            if not chunks:
+          with st.spinner("Searching documents..."):
+             retrieval_start = time.perf_counter()
+             chunks, ids = retrieve_context_cached(user_input)
+             retrieval_time = time.perf_counter() - retrieval_start
+             print(f"[PERFORMANCE] Retrieval: {retrieval_time:.2f}s")
+             if not chunks:
                 answer = "I don't have any information relevant to that question in the documents I have access to."
                 st.markdown(answer)
-            else:
+             else:
+                llm_start = time.perf_counter()
                 answer = st.write_stream(ask_llm_stream(user_input, chunks))
+                llm_time = time.perf_counter() - llm_start
+                print(f"[PERFORMANCE] LLM: {llm_time:.2f}s")
 
                 col1, col2 = st.columns([1, 1])
                 with col1:
