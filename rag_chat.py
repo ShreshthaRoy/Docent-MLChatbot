@@ -9,7 +9,7 @@ embedder = SentenceTransformer('all-MiniLM-L6-v2')
 client = chromadb.PersistentClient(path="./chroma_db")
 collection = client.get_or_create_collection(name="policies")
 
-def retrieve_context(question, n_results=8, distance_threshold=1.5):
+def retrieve_context(question, n_results=4, distance_threshold=1.5):
     question_embedding = embedder.encode([question]).tolist()
     results = collection.query(query_embeddings=question_embedding, n_results=n_results)
 

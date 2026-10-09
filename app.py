@@ -155,7 +155,7 @@ Answer:"""
                 "stream": True,
                 "keep_alive": "30m",
                 "options": {
-                    "num_predict": 150
+                    "num_predict":150
                 }
             },
             stream=True,
